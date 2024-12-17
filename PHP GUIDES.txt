@@ -1,0 +1,17 @@
+ for this error ===> Failed to listen on 127.0.0.1:8000 (reason: 
+
+in this C:\Users\Ralph\.config\herd-lite\bin, the file php or php.ini inside i change it to,
+
+ variables_order = "GPCS"
+opcache.enable=1
+opcache.enable_cli=1
+
+from 
+
+variables_order = "EGPCS"
+opcache.enable=1
+opcache.enable_cli=1
+
+=================================================================
+step for creating a laravel project
+
