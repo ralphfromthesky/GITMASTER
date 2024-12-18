@@ -130,3 +130,85 @@ const tos = () => {
     return numbers.map((a) => a.toString())
 }
 console.log(tos())
+
+====================================
+STRING METHOD
+
+// charAt()
+let str = "Hello";
+let char = str.charAt(1);  // "e"
+
+// charCodeAt()
+let charCode = str.charCodeAt(1);  // 101
+
+// concat()
+let greeting = "Hello".concat(" ", "World");  // "Hello World"
+
+// includes()
+let hasHello = str.includes("Hell");  // true
+
+// indexOf()
+let index = str.indexOf("e");  // 1
+
+// lastIndexOf()
+let lastIndex = str.lastIndexOf("l");  // 3
+
+// length
+let length = str.length;  // 5
+
+// replace()
+let newStr = str.replace("Hello", "Hi");  // "Hi"
+
+// replaceAll()
+let replacedStr = "Hello Hello".replaceAll("Hello", "Hi");  // "Hi Hi"
+
+// slice()
+let sliced = str.slice(1, 4);  // "ell"
+
+// split()
+let splitArray = str.split("");  // ["H", "e", "l", "l", "o"]
+
+// startsWith()
+let starts = str.startsWith("He");  // true
+
+// endsWith()
+let ends = str.endsWith("lo");  // true
+
+// substring()
+let subStr = str.substring(1, 4);  // "ell"
+
+// toLowerCase()
+let lower = str.toLowerCase();  // "hello"
+
+// toUpperCase()
+let upper = str.toUpperCase();  // "HELLO"
+
+// trim()
+let trimmed = "  Hello  ".trim();  // "Hello"
+
+// trimStart()
+let trimmedStart = "  Hello  ".trimStart();  // "Hello  "
+
+// trimEnd()
+let trimmedEnd = "  Hello  ".trimEnd();  // "  Hello"
+
+// padStart()
+let paddedStart = "5".padStart(3, "0");  // "005"
+
+// padEnd()
+let paddedEnd = "5".padEnd(3, "0");  // "500"
+
+// repeat()
+let repeated = str.repeat(2);  // "HelloHello"
+
+// match()
+let match = "Hello123".match(/\d+/);  // ["123"]
+
+// matchAll()
+let matches = [..."Hello123".matchAll(/\d+/g)];  // [["123"]]
+
+// search()
+let searchIndex = "Hello123".search(/\d+/);  // 5
+
+// valueOf()
+let value = str.valueOf();  // "Hello"
