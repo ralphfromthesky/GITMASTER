@@ -1,0 +1,132 @@
+const numbers = [9, 2, 5, 4, 6, 7, 3, 1, 8]
+const names = ['Amanda', 'Barbara', 'Caleb', 'Daniela', 'Sarah', 'Jason', 'Natasha', 'Hannah', 'Aaron', 'Gabriel'];
+const person = [
+    { name: 'ralph', age: 40 },
+    { name: 'shenron', age: 10 },
+    { name: 'gadwin', age: 5 },
+
+]
+
+const max = () => {
+    return numbers.reduce((a, b) => a > b ? a : b)
+}
+
+const min = () => {
+    return numbers.reduce((a, b) => a < b ? a : b)
+}
+
+const sumUp = () => {
+    return numbers.reduce((a, b) => a + b, 0)
+}
+
+const newSlice = () => {
+    return names.slice(0, 5)
+}
+
+const mapping = () => {
+    return numbers.reduce((a, b) => a - b)
+}
+
+const pushObject = () => {
+    person.push({
+        name: 'santolorin',
+        age: '500'
+    })
+    return person
+}
+
+const poppers = () => {
+    person.pop();
+    return person
+}
+
+const shifter = () => {
+    const del = person.shift()
+    return del
+}
+
+const unshifter = () => {
+    person.unshift({
+        name: 'len', age: 10
+    })
+    return person
+}
+
+const splices = () => {
+    numbers.splice(0, 3, 10)
+    return numbers
+}
+
+const filtering = () => {
+    return person.filter((a) => a.age === 5 || a.name === 'shenron')
+
+}
+
+const mappers = () => {
+    return numbers.map((a) => a * 2)
+}
+
+const namers = () => {
+    return names.map((a, i) => a.toUpperCase() + " " + i + 1)
+}
+
+const objmap = () => {
+    return person.map((a) => a.name.toUpperCase())
+}
+
+const finders = () => {
+    return person.find((a) => a.name.toLowerCase() === 'shenron')
+}
+
+const finders2 = () => {
+    return names.find((a) => a.toLowerCase() === 'sarah')
+}
+
+const findIndex = () => {
+    // return names.findIndex((a) => a === 'Sarah')
+    return person.findIndex((a) => a.name === 'gadwin')
+
+}
+
+const every = () => {
+    return names.every((a) => a.includes('a'))
+}
+const some = () => {
+    return names.some((a) => a.includes('pa'))
+}
+
+const findNumber = () => {
+    const names = 'RALPH'
+    // return numbers.find((a) => a === 7)
+    // return person.find((a) => a.name.toLowerCase() === names.toLowerCase())
+    return person.find((a) => a.name === 'ralph')
+}
+
+const lookLastIndexOf = () => {
+    return names.lastIndexOf('Sarah')
+}
+
+const sorted = () => {
+    return numbers.sort((a, b) => b - a)
+}
+
+const randomNumber = () => {
+    const newArr = []
+    for (let i = 0; i < 5; i++) {
+        newArr.push(Math.floor(Math.random() * 100 + 1));
+        newArr.sort((a, b) => a - b)
+    }
+    return newArr
+}
+
+const concaters =() => {
+    return numbers.concat(names)
+}
+
+const cap = () => {
+    return names.forEach((a) => a.toUpperCase())
+}
+const tos = () => {
+    return numbers.map((a) => a.toString())
+}
+console.log(tos())
