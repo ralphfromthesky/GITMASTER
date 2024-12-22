@@ -1,2 +1,0 @@
-this is sample text
-i addedt this text from branch sampleTask4 

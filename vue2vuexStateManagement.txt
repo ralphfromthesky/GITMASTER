@@ -1,0 +1,201 @@
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+
+-no need to import in component just import in main.js for global use
+-direct use in template {{$store.state.name}} - {{$store.state.age}}
+-the mapMutations and mapActions should be always inside methods: {}
+-mapGetters and mapState should always inside computed: {}
+-for action and mutation,
+   <button @click="changeBalance(500)">change</button>
+    <button @click="changeName('joana')">changeName</button>
+
+
+export default {
+  computed: {
+    ...mapState(['name', 'age']),
+    ...mapGetters(['fullName']),
+  },
+  methods: {
+    ...mapActions(['fetchUser']),
+    ...mapMutations(['setName', 'changeBalance', 'changeName' ]),
+  },
+};
+
+//store
+
+import { createStore } from 'vuex'
+import student from './modules/student';
+
+const store = createStore({
+    modules: {
+        student,
+    },
+
+    state: {
+        name: 'ralph santlorin',
+        age: 40,
+        balance: 100000,
+        newData: []
+
+    },
+    mutations: {
+        changeBalance(state, payload) {
+            state.balance = payload
+        },
+        changeName(state, payload) {
+            state.name = payload
+        }
+    },
+    actions: {
+        async fetchData({ commit }, payload) {
+            try {
+                const response = await fetch('/api');
+                if (response) {
+                    newData = response.data;
+                    commit('changeBalance', payload)
+                }
+            } catch (error) {
+                alert(`error: ${error}`)
+            }
+        }
+    },
+    getters: {
+        getData: (state) => {
+             return state.name
+        }
+    }
+})
+
+export default store;
+
+export const useStore = () => {
+    return store
+}
+
+//in App.vue
+
+<template>
+  <div>
+    {{ message }} - {{ getnumber }}
+    <button @click="addnums">Add</button>
+    {{ total }} -- {{ taeMalaki }} <br>
+
+    {{ $store.state.name }} -- {{ $store.state.balance }} -- {{ $store.state.age }}
+
+    <div>this is mapState - {{ name }}</div>
+    <button @click="changeBalance(500)">change</button>
+    <button @click="changeName('joana')">changeName</button> <br>
+    <button @click="addNumb(0)">adds</button>
+    {{ getData }}
+
+    <div class="stud">
+      <Student />
+    </div>
+
+  </div>
+</template>
+
+<script>
+import { mapState, mapMutations, mapGetters } from 'vuex'
+import Student from './components/Student.vue';
+
+export default {
+
+  name: 'app',
+  components: {
+    Student
+  },
+  data() {
+    return {
+      message: 'ralph',
+      taeMalaki: 0,
+      total: 0,
+      num: 10,
+      plus: 100
+    };
+  },
+  computed: {
+    ...mapState(['name', 'age', 'account']),
+    ...mapGetters(['getData']),
+    getnumber() {
+      return this.message;
+    },
+    sums() {
+      return this.num + this.plus;
+    }
+  },
+  methods: {
+    addnums() {
+      this.taeMalaki = this.num + this.plus;
+    },
+    ...mapMutations(['changeBalance', 'changeName']),
+    addNumb(payload) {
+      this.changeBalance(payload)
+    },
+  },
+
+  watch: {
+    taeMalaki(newVal, oldVal) {
+      if (newVal) {
+        alert(`Total changed from ${oldVal} to ${newVal}`);
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.stud {
+  border: 2px solid red;
+  margin-top: 4rem;
+}
+</style>
+
+//in modules student.js
+
+const student = {
+    namespaced: true,
+    state: {
+        name: 'ted',
+        age: 55,
+        balance: 100000
+    },
+    actions: {
+
+    },
+    mutations: {
+
+    },
+    getters: {
+
+    }
+}
+
+export default student
+
+//in Student.vue
+
+<template>
+    <div>
+        Lorem ipsum dolor sit amet.
+        {{ name }} - {{ age }}
+    </div>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+
+    export default {
+        data () {
+            return {
+
+            }
+        },
+        computed: {
+            ...mapState("student", ['name', 'age'])
+        }
+    }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
