@@ -1,0 +1,78 @@
+ for this error ===> Failed to listen on 127.0.0.1:8000 (reason: 
+
+in this C:\Users\Ralph\.config\herd-lite\bin, the file php or php.ini inside i change it to,
+
+ variables_order = "GPCS"
+opcache.enable=1
+opcache.enable_cli=1
+
+from 
+
+variables_order = "EGPCS"
+opcache.enable=1
+opcache.enable_cli=1
+
+=================================================================
+step for creating a laravel project
+notes: df
+
+-composer global require laravel/installer
+
+-laravel new projectName
+
+- php artisan migrate // for migrating after creating the project of laravel
+
+-php artisan serve for running the server laravel
+
+//you need mySql server to run database, php artisan for running the laravel then database server is diffierenr
+//either you can use xampp or laragon server for running database or install database in your local to run, need to run this to server, laravel and database server
+
+-php artisan make:controller SampleController
+//then if in the api.php write this, Route::get('contacts',  [App\Http\Controllers\SampleController::class, 'contacts']);
+//if there no api.php create a file and write this....
+
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+
+Route::get('contacts',  [App\Http\Controllers\SampleController::class, 'contacts']);
+
+--then create model for database,  -- php artisan make:model Contacts -m, for creating also a table at the database folder example('2024_12_24_142702_create_contacts_table.php')
+
+--then inside migration folder the craeted table and write the  tables like this, 
+
+    public function up(): void
+    {
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('age');
+            $table->string('location');
+            $table->string('email');
+            $table->string('contact_no');
+            $table->timestamps();
+        });
+    }
+
+--then in terminal, (php artisan migrate) to mgrate this in the database to be created  a table
+-- then in the controller that you created, create a function for fetching the model in the database...
+
+Summary of the Process:
+Model: Create the model to represent the database table.
+Migration: Define the structure of the database table in a migration and run it.
+Routes: Define the API routes that link the HTTP requests to controller actions.
+Controller: Write controller methods that interact with the model and return appropriate responses.
+Testing: Test your API by making requests to the defined routes.
